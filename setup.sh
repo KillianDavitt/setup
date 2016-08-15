@@ -26,6 +26,7 @@ git clone https://github.com/KillianDavitt/dotfiles.git
 echo "Linking dotfiles..."
 ln -S ~/git/dotfiles/.vimrc ~/.vimrc
 ln -S ~/git/dotfiles/.bashrc ~/.bashrc
+ln -S ~/git/dotfiles/.zshrc ~/.zshrc
 source ~/.bashrc
 
 echo "Time to set up go!"
