@@ -15,7 +15,9 @@ then
   get="sudo apt-get install -y"
 fi
 
-echo "Creating git dir"
+echo "Installing git..."
+
+echo "Creating git dir..."
 mkdir ~/git || true
 cd ~/git
 echo "Cloning dotfiles..."
@@ -35,9 +37,12 @@ tar -C /usr/local -xzf $ver
 go get -u github.com/odeke-em/drive/cmd/drive
 drive init ~/drive
 cd ~/drive
+drive pull linux
 
 # Next priority is to setup the go drive cron scripts
 cp ~/git/dotfiles/drivecron/drive_upload.sh /usr/local/bin/
 
 get python3 zsh vim
 
+## Now install private stuff, docs, non-git code, pics
+bash ~/drive/linux/setup.sh
