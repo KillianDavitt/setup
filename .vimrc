@@ -1,1 +1,0 @@
-/home/killian/drive/linux/.vimrc
