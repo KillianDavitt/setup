@@ -5,8 +5,8 @@ A simple bash script to be run upon installing fresh linux operating system, ins
 
 ```bash
 wget https://raw.githubusercontent.com/KillianDavitt/setup/master/setup.sh
-```
 
-```bash
+chmod +x setup.sh
+
 ./setup.sh
 ```
