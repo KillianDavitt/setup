@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "Please retrieve the general cmd password from lastpass now. Enter it here..."
+read pass
+echo "pass=".$pass >> ~/.bash_profile
+
 
 set -e
 get="sudo apt-get install -y "
@@ -38,3 +42,22 @@ git clone https://github.com/altercation/vim-colors-solarized
 # Netsoc first
 ssh-keygen -f ~/.ssh/id_netsoc -N '' -q
 cat ~/.ssh/id_netsoc.pub | ssh netsoc "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+
+docfile=$(ssh netsoc "ls -Art doc-backup | tail -n 1")
+codefile=$(ssh netsoc "ls -Art code-backup | tail -n 1")
+
+
+echo $docfile
+
+sftp -b /dev/fd/0 netsoc <<EOF
+cd doc-backup
+get doc-backup/$docfile
+get code-backup/$codefile
+bye
+EOF
+
+mkdir ~/doc
+mkdir ~/code
+
+echo $pass | gpg --output ~/doc.tar.gz --decrypt $docfile
+
